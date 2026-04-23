@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-ttl-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-ttl-controller
+  template:
+    metadata:
+      labels:
+        app: pod-ttl-controller
+    spec:
+      serviceAccountName: pod-ttl-controller
+      containers:
+      - name: controller
+        image: pod-ttl-controller:latest
+        imagePullPolicy: Never
